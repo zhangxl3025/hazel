@@ -1,0 +1,3 @@
+com.zxl.hazel.trace.exporter.LogTraceExporter
+com.zxl.hazel.trace.exporter.SkyWalkingTraceExporter
+

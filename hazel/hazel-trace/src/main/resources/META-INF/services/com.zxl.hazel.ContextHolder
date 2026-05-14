@@ -1,0 +1,3 @@
+com.zxl.hazel.trace.support.MDCHolder
+com.zxl.hazel.trace.support.SpanHolder
+com.zxl.hazel.sync.SyncContextHolder

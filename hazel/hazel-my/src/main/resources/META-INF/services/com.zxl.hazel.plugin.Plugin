@@ -1,2 +1,4 @@
-com.zxl.hazel.plugin.JdbcPlugin
-com.zxl.hazel.plugin.WebPlugin
+com.zxl.hazel.plugin.HikariDataSourcePlugin
+com.zxl.hazel.plugin.TraceDataSourcePlugin
+com.zxl.hazel.plugin.SqlInitPlugin
+com.zxl.hazel.plugin.HazelWebPlugin

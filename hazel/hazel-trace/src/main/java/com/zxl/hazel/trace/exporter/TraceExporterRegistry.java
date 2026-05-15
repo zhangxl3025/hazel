@@ -1,6 +1,6 @@
 package com.zxl.hazel.trace.exporter;
 
-import com.zxl.hazel.ContextManager;
+import com.zxl.hazel.context.ContextManager;
 import com.zxl.hazel.apm.APMContextProcessorRegistry;
 import com.zxl.hazel.apm.APMType;
 import com.zxl.hazel.trace.Span;

@@ -20,13 +20,13 @@
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-core</artifactId>
-            <version>1.12.5</version>
+            <version>1.15.5</version>
         </dependency>
         <!-- Prometheus 注册中心（最常用） -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
-            <version>1.12.5</version>
+            <version>1.15.5</version>
         </dependency>
 
         <!-- SLF4J API -->
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-common</artifactId>
-<!--            <scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -61,17 +61,17 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- SLF4J Simple Implementation for testing -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <scope>test</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.46</version>
+            <scope>provided</scope>
         </dependency>
+
+        <!-- SnakeYAML (YAML 配置支持) -->
         <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-core</artifactId>
-            <version>1.15.5</version>
-            <scope>compile</scope>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
         </dependency>
 
 

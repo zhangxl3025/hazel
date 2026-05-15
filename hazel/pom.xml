@@ -14,18 +14,20 @@
 
     <modules>
         <module>hazel-trace</module>
+        <module>hazel-web</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dependency versions -->
-        <slf4j.version>2.0.16</slf4j.version>
+        <slf4j.version>2.0.18</slf4j.version>
         <junit.version>5.12.1</junit.version>
         <logback.version>1.5.18</logback.version>
         <netty.version>4.1.119.Final</netty.version>
+        <snakeyaml.version>2.2</snakeyaml.version>
 
         <!-- Plugin versions -->
         <mybatis.version>3.5.13</mybatis.version>
@@ -37,6 +39,7 @@
         <servlet.api.version>6.0.0</servlet.api.version>
         <javax.servlet.api.version>4.0.1</javax.servlet.api.version>
         <skywalking.version>9.6.0</skywalking.version>
+        <lombok.version>1.18.46</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +74,18 @@
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <!-- Logback (锁定版本，避免 micrometer 等引入 1.2.x 旧版) -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
             </dependency>
 
             <!-- JUnit 5 -->
@@ -160,6 +175,21 @@
                 <groupId>org.apache.skywalking</groupId>
                 <artifactId>apm-agent-core</artifactId>
                 <version>${skywalking.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- SnakeYAML -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>

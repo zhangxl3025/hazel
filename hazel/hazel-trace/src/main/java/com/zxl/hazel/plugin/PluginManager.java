@@ -40,11 +40,11 @@ public class PluginManager {
     public static void startPlugins() {
         for (Plugin plugin : plugins) {
             try {
-                log.info("Starting plugin: {}", plugin.name());
+                long stepStart = System.currentTimeMillis();
                 plugin.start();
-                log.info("Plugin started: {}", plugin.name());
+                log.info("Plugin-{} started in {} ms", plugin.name(), System.currentTimeMillis() - stepStart);
             } catch (Exception e) {
-                log.error("Failed to start plugin: {}", plugin.name(), e);
+                log.error("Failed to start Plugin-{}", plugin.name(), e);
             }
         }
     }
@@ -56,9 +56,9 @@ public class PluginManager {
         for (Plugin plugin : plugins) {
             try {
                 plugin.stop();
-                log.info("Plugin stopped: {}", plugin.name());
+                log.info("Plugin-{} stopped", plugin.name());
             } catch (Exception e) {
-                log.error("Failed to stop plugin: {}", plugin.name(), e);
+                log.error("Failed to stop Plugin-{}", plugin.name(), e);
             }
         }
         plugins.clear();

@@ -1,6 +1,7 @@
 package com.zxl.hazel.trace.exporter;
 
 import com.zxl.hazel.trace.Span;
+import com.zxl.hazel.trace.exporter.TraceExporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,10 @@ public class LogTraceExporter implements TraceExporter {
         if (span == null || !span.isSampled()) {
             return;
         }
-        
+
+        // 压缩 tags 中的换行符，确保日志单行输出
+        String tagsStr = span.getTags().isEmpty() ? "none" : formatTags(span.getTags());
+
         // 输出Span的详细信息（每个Span独立导出）
         log.info("[SPAN] traceId={}, spanId={}, operation={}, parentSpanId={}, duration={}ms, level={}, root={}, tags={}",
                 span.getTraceId(),
@@ -39,6 +43,27 @@ public class LogTraceExporter implements TraceExporter {
                 span.getDuration(),
                 span.getLevel(),
                 span.isRoot() ? "true" : "false",
-                span.getTags().isEmpty() ? "none" : span.getTags());
+                tagsStr);
+    }
+
+    /**
+     * 格式化 tags，将值中的换行符和连续空白压缩为单个空格
+     */
+    private String formatTags(java.util.Map<String, String> tags) {
+        StringBuilder sb = new StringBuilder("{");
+        boolean first = true;
+        for (var entry : tags.entrySet()) {
+            if (!first) sb.append(", ");
+            first = false;
+            sb.append(entry.getKey()).append('=');
+            String val = entry.getValue();
+            if (val != null) {
+                // 压缩换行 + 连续空白 → 单空格
+                val = val.replaceAll("[\\r\\n]+\\s*", " ").trim();
+            }
+            sb.append(val);
+        }
+        sb.append('}');
+        return sb.toString();
     }
 }

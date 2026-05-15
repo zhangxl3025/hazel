@@ -1,7 +1,8 @@
 package com.zxl.hazel.dao;
 
 
-import com.zxl.hazel.bean.BeanContainer;
+import com.zxl.hazel.annotation.ioc.Repository;
+import com.zxl.hazel.ioc.BeanContainer;
 import com.zxl.hazel.entity.Order;
 
 import javax.sql.DataSource;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class OrderRepository {
 
     private DataSource getDataSource() {

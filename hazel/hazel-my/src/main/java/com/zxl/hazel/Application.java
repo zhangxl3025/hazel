@@ -1,6 +1,7 @@
 package com.zxl.hazel;
 
-import com.zxl.hazel.annotation.HazelBootApplication;
+import com.zxl.hazel.annotation.lifecycle.HazelBootApplication;
+import com.zxl.hazel.boot.HazelBoot;
 import com.zxl.hazel.trace.Tracer;
 
 // 启动类

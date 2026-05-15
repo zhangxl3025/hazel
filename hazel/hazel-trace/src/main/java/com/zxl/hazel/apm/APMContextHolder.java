@@ -1,6 +1,7 @@
 package com.zxl.hazel.apm;
 
-import com.zxl.hazel.ContextHolder;
+import com.zxl.hazel.context.ContextHolder;
+import com.zxl.hazel.context.ContextManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ import org.slf4j.LoggerFactory;
  * <p>使用示例：
  * <pre>
  * // 1. SPI 自动注册（推荐）
- * // 在 META-INF/services/com.zxl.hazel.ContextHolder 中添加：
+ * // 在 META-INF/services/com.zxl.hazel.context.ContextHolder 中添加：
  * // com.zxl.hazel.trace.APMContextHolder
  * 
  * // 2. 使用 ContextManager 包装任务
@@ -33,7 +34,7 @@ import org.slf4j.LoggerFactory;
  * </pre>
  * 
  * @author hazel
- * @see com.zxl.hazel.ContextManager
+ * @see ContextManager
  * @see APMContextProcessor
  */
 public class APMContextHolder implements ContextHolder<Object> {

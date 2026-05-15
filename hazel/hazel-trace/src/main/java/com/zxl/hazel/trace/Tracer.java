@@ -1,15 +1,15 @@
 package com.zxl.hazel.trace;
 
 import com.zxl.hazel.apm.APMContextProcessorRegistry;
-import com.zxl.hazel.thread.stack.MyThreadLocalStack;
-import com.zxl.hazel.thread.stack.ThreadLocalStackRegistry;
+import com.zxl.hazel.context.thread.stack.MyThreadLocalStack;
+import com.zxl.hazel.context.thread.stack.ThreadLocalStackRegistry;
 import com.zxl.hazel.trace.exporter.TraceExporterRegistry;
 import com.zxl.hazel.trace.propagation.Getter;
 import com.zxl.hazel.trace.propagation.Setter;
 import com.zxl.hazel.trace.propagation.TraceHeaders;
-import com.zxl.hazel.trace.support.MdcHook;
-import com.zxl.hazel.trace.support.SpanContextHook;
-import com.zxl.hazel.trace.support.SpanInitUtil;
+import com.zxl.hazel.trace.hook.MdcHook;
+import com.zxl.hazel.trace.hook.SpanContextHook;
+import com.zxl.hazel.trace.util.IdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,7 +80,7 @@ public class Tracer {
                                          String operationName, int level, String globalTxId, String transactionId) {
         Span span = new Span();
         span.setTraceId(traceId);
-        span.setSpanId(SpanInitUtil.generateSpanId());
+        span.setSpanId(IdGenerator.generateSpanId());
         span.setSegmentId(segmentId);
         span.setParentSpanId(parentSpanId);
         span.setOperationName(operationName);
@@ -124,8 +124,8 @@ public class Tracer {
 
     private static Span createRoot(String traceId, String operationName) {
         try {
-            String resolvedTraceId = traceId != null ? traceId : SpanInitUtil.generateTraceId();
-            return completeSpanInit(resolvedTraceId, SpanInitUtil.generateSegmentId(), null, operationName, 0, null, null);
+            String resolvedTraceId = traceId != null ? traceId : IdGenerator.generateTraceId();
+            return completeSpanInit(resolvedTraceId, IdGenerator.generateSegmentId(), null, operationName, 0, null, null);
         } catch (Exception e) {
             return Span.NONE;
         }

@@ -1,7 +1,8 @@
 package com.zxl.hazel.dao;
 
 
-import com.zxl.hazel.bean.BeanContainer;
+import com.zxl.hazel.annotation.ioc.Repository;
+import com.zxl.hazel.ioc.BeanContainer;
 import com.zxl.hazel.entity.Inventory;
 
 import javax.sql.DataSource;
@@ -9,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class InventoryRepository {
 
     private DataSource getDataSource() {

@@ -1,7 +1,6 @@
 package com.zxl.hazel.plugin;
 
 
-import com.zxl.hazel.properties.PropertiesConfig;
 import com.zxl.hazel.event.Event;
 import com.zxl.hazel.event.EventTransfer;
 
@@ -18,17 +17,18 @@ public interface Plugin {
 
     /**
      * 启动顺序（越小越先启动）
+     * <p>
+     * 用户自定义插件取值范围：1~97，其余为框架保留区。
      */
     default int order() {
-        return 100;
+        return 50;
     }
 
     /**
      * 是否启用（从配置读取）
      */
     default boolean isEnabled() {
-        String enabled = PropertiesConfig.get("hazel.plugin." + name() + ".enabled");
-        return !"false".equalsIgnoreCase(enabled);
+        return true;
     }
 
     /**
